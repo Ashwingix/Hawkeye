@@ -1,0 +1,28 @@
+[
+    {
+      "text": "Dashboard",
+      "link": "/Home",
+      "icon": "Home"
+
+    },
+    {
+      "text": "Profile",
+      "icon": "Person",
+      "subItems": [
+        {
+          "text": "Profile details",
+          "link": "/Profile"
+        },
+        {
+          "text": "Profile Settings",
+          "link": "/profile/settings"
+        }
+      ]
+    },
+    {
+      "text": "Settings",
+      "link": "/settings",
+      "icon": "Settings"
+    }
+  ]
+  
