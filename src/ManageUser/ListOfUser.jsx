@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
@@ -46,58 +46,58 @@ const ListOfUser = () => {
   const pagination = true;
   const paginationPageSize = 500;
   const paginationPageSizeSelector = [200, 500, 1000];
-  const [rowData, setRowData] = useState([
-    {
-      Name: "Tesla",
-      Username: "Model Y",
-      Email: "example@example.com",
-      Role: "fd",
-    },
-    {
-      Name: "Tesla",
-      Username: "Model Y",
-      Email: "example@example.com",
-      Role: "fd",
-    },
-    {
-      Name: "Tesla",
-      Username: "Model Y",
-      Email: "example@example.com",
-      Role: "fd",
-    },
-    {
-      Name: "Tesla",
-      Username: "Model Y",
-      Email: "example@example.com",
-      Role: "fd",
-    },
-  ]);
-
+  const [rowData, setRowData] = useState([]);
   const [colDefs, setColDefs] = useState([
-    { field: "Name", resizable: true, minWidth: 150 },
-    { field: "Username", resizable: true, minWidth: 150 },
-    { field: "Email", resizable: true, minWidth: 200 },
-    { field: "Role", resizable: true, minWidth: 100 },
+    { field: "name", resizable: true, minWidth: 150 },
+    { field: "description", resizable: true, minWidth: 150 },
+    { field: "Eproduct_idmail", resizable: true, minWidth: 200 },
+    { field: "id", resizable: true, minWidth: 100 },
     {
-      field: "Actions",
+      field: "created_by",
       cellRenderer: ActionsCellRenderer,
       filter: false,
       resizable: true,
       minWidth: 150,
     },
   ]);
-
   const [open, setOpen] = useState(false);
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
   const [formValues, setFormValues] = useState({
     name: "",
     username: "",
     email: "",
     role: "",
   });
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const apiUrl = "http://3.109.144.250/phase3/api/v1/grade/list";
+      const apiToken = sessionStorage.getItem("api_token");
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiToken}`,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setRowData(data?.data); 
+        } else {
+          console.error("Failed to fetch data");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const handleOpen = () => setOpen(true);
+  const handleClose = () => setOpen(false);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -131,18 +131,13 @@ const ListOfUser = () => {
             color: "#1d2127",
             fontWeight: "bold",
             letterSpacing: 1.2,
-            fontFamily: 'Roboto',
+            fontFamily: "Roboto",
           }}
         >
           List Of User
         </Typography>
 
-        <Button
-          variant="contained"
-          color="success"
-          onClick={handleOpen}
-          // sx={{ margin: "5px" }}
-        >
+        <Button variant="contained" color="success" onClick={handleOpen}>
           Add User
         </Button>
       </Box>

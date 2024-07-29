@@ -34,8 +34,9 @@ const Login = ({ onLogin }) => {
       if (response.ok) {
         const data = await response.json();
         console.log("Login successful:", data);
-        onLogin(); // Call onLogin to update the logged-in state
-        sessionStorage.setItem("loggedIn", "true"); // Set session storage correctly
+        onLogin(); 
+        sessionStorage.setItem("loggedIn", "true");
+        sessionStorage.setItem("api_token", data?.data?.api_token); 
         navigate("/Home");
       } else {
         const errorData = await response.json();
