@@ -122,7 +122,7 @@ const Sidebar = () => {
                       key={subItem.text}
                       sx={{ pl: 4, color: '#ccc' }}
                     >
-                      <ListItemIcon sx={{ minWidth: "32px" }}>
+                      <ListItemIcon sx={{ minWidth: "42px", color: '#ccc' }}>
                         <RxDot fontSize="small" />
                       </ListItemIcon>
                       <ListItemText primary={subItem.text} />

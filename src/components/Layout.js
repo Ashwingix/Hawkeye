@@ -87,12 +87,12 @@ const Layout = ({ onLogout }) => {
                 HawkEye
               </Typography>
               <Box sx={{ display: "flex", alignItems: "center" }}>
-                <Breadcrumbs aria-label="breadcrumb" sx={{ color: "#ccc", mr: 2,fontSize:"13px" }}>
-                  <Link underline="hover" color="inherit" component={RouterLink} to="/">
+                {/* <Breadcrumbs aria-label="breadcrumb" sx={{ color: "#ccc", mr: 2,fontSize:"13px" }}>
+                  <Link underline="hover" color="inherit" component={RouterLink} to="/Home">
                     Home
                   </Link>
                   {breadcrumbs}
-                </Breadcrumbs>
+                </Breadcrumbs> */}
                 <IconButton
                   edge="end"
                   aria-label="user options"

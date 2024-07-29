@@ -25,7 +25,7 @@
       "subItems": [
         {
           "text": "List Of User",
-          "link": "/ManageUser"
+          "link": "/ManageUser/ListOfUser"
         },
         {
           "text": "Cdn Client",
@@ -34,16 +34,16 @@
       ]
     },
     {
-      "text": "Manage Master Data",
+      "text": "Manage Master",
       "icon": "ManageMasterData",
       "subItems": [
         {
           "text": "Grade",
-          "link": "/ManageMasterData"
+          "link": "/ManageMasterData/Grade"
         },
         {
           "text": "Subject",
-          "link": "/ManageMasterData/Subject"
+          "link": "/ManageMasterData/MasterSubject"
         },
         {
           "text": "Chapter",
@@ -77,7 +77,7 @@
       "subItems": [
         {
           "text": "Question Library",
-          "link": "/ManageLibrary"
+          "link": "/ManageLibrary/QuestionLib"
         },
         {
           "text": "Media Library",
@@ -95,7 +95,7 @@
       "subItems": [
         {
           "text": "Task List",
-          "link": "/TaskManagement"
+          "link": "/TaskManagement/TaskList"
         },
         {
           "text": "Create List",
@@ -113,7 +113,7 @@
       "subItems": [
         {
           "text": "View Requirement",
-          "link": "/B2MManagement"
+          "link": "/B2MManagement/ViewRequirement"
         },
         {
           "text": "Create Requirement",
@@ -131,7 +131,7 @@
       "subItems": [
         {
           "text": "Subject",
-          "link": "/KnowledgeGraph"
+          "link": "/KnowledgeGraph/KnowledgeSubject"
         }
       ]
     },
@@ -141,7 +141,7 @@
       "subItems": [
         {
           "text": "List",
-          "link": "/TechAdmin"
+          "link": "/TechAdmin/List"
         }
       ]
     },
