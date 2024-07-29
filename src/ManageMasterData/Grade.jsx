@@ -44,8 +44,8 @@ const handleDelete = (rowData) => {
 
 const Grade = () => {
   const pagination = true;
-  const paginationPageSize = 500;
-  const paginationPageSizeSelector = [200, 500, 1000];
+  const paginationPageSize = 10;
+  const paginationPageSizeSelector = [10,20, 30, 50];
   const [rowData, setRowData] = useState([]);
   const [colDefs, setColDefs] = useState([
     { field: "name", resizable: true, minWidth: 150 },
@@ -213,8 +213,9 @@ const Grade = () => {
             </form>
           </Box>
         </Modal>
-        <Box className="ag-theme-quartz" sx={{ flexGrow: 1 }}>
+        <Box className="ag-theme-quartz" sx={{ flexGrow: 1}}>
           <AgGridReact
+          
             rowData={rowData}
             columnDefs={colDefs}
             pagination={pagination}
