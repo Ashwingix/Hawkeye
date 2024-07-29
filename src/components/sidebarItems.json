@@ -20,6 +20,134 @@
       ]
     },
     {
+      "text": "Manage User",
+      "icon": "ManageUser",
+      "subItems": [
+        {
+          "text": "List Of User",
+          "link": "/ManageUser"
+        },
+        {
+          "text": "Cdn Client",
+          "link": "/ManageUser/CdnClient"
+        }
+      ]
+    },
+    {
+      "text": "Manage Master Data",
+      "icon": "ManageMasterData",
+      "subItems": [
+        {
+          "text": "Grade",
+          "link": "/ManageMasterData"
+        },
+        {
+          "text": "Subject",
+          "link": "/ManageMasterData/Subject"
+        },
+        {
+          "text": "Chapter",
+          "link": "/ManageMasterData/Chapter"
+        },
+        {
+          "text": "Topic",
+          "link": "/ManageMasterData/Topic"
+        },
+        {
+          "text": "Evidence",
+          "link": "/ManageMasterData/Evidence"
+        },
+        {
+          "text": "Medium",
+          "link": "/ManageMasterData/Medium"
+        },
+        {
+          "text": "Difficulty",
+          "link": "/ManageMasterData/Difficulty"
+        },
+        {
+          "text": "Competency tag",
+          "link": "/ManageMasterData/Competencytag"
+        }
+      ]
+    },
+    {
+      "text": "Manage Library",
+      "icon": "ManageLibrary",
+      "subItems": [
+        {
+          "text": "Question Library",
+          "link": "/ManageLibrary"
+        },
+        {
+          "text": "Media Library",
+          "link": "/ManageLibrary/MediaLibrary"
+        },
+        {
+          "text": "TextBook Library",
+          "link": "/ManageUser/TextBookLibrary"
+        }
+      ]
+    },
+    {
+      "text": "Task Management",
+      "icon": "TaskManagement",
+      "subItems": [
+        {
+          "text": "Task List",
+          "link": "/TaskManagement"
+        },
+        {
+          "text": "Create List",
+          "link": "/TaskManagement/CreateList"
+        },
+        {
+          "text": "Task Archives",
+          "link": "/TaskManagement/TaskArchives"
+        }
+      ]
+    },
+    {
+      "text": "B2M Management",
+      "icon": "Requirment",
+      "subItems": [
+        {
+          "text": "View Requirement",
+          "link": "/B2MManagement"
+        },
+        {
+          "text": "Create Requirement",
+          "link": "/B2MManagement/CreateRequirement"
+        },
+        {
+          "text": "Requirement Archives",
+          "link": "/B2MManagement/RequirementArchives"
+        }
+      ]
+    },
+    {
+      "text": "Knowledge Graph",
+      "icon": "knowledgegraph",
+      "subItems": [
+        {
+          "text": "Subject",
+          "link": "/KnowledgeGraph"
+        }
+      ]
+    },
+    {
+      "text": "Tech Admin",
+      "icon": "ManageUser",
+      "subItems": [
+        {
+          "text": "List",
+          "link": "/TechAdmin"
+        }
+      ]
+    },
+
+
+    {
       "text": "Settings",
       "link": "/settings",
       "icon": "Settings"

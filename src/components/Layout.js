@@ -1,5 +1,5 @@
 import React from "react";
-import { Outlet, useLocation } from "react-router-dom";
+import { Outlet, useLocation, Link as RouterLink } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -9,15 +9,35 @@ import {
   IconButton,
   Menu,
   MenuItem,
+  Breadcrumbs,
+  Link,
 } from "@mui/material";
-import { AccountCircle } from "@mui/icons-material"; 
+import { AccountCircle } from "@mui/icons-material";
 import Sidebar from "./Sidebar";
+
+// Utility function to generate breadcrumb items
+const generateBreadcrumbs = (location) => {
+  const pathnames = location.pathname.split('/').filter((x) => x);
+  return pathnames.map((value, index) => {
+    const to = `/${pathnames.slice(0, index + 1).join('/')}`;
+    return (
+      <Link
+        key={to}
+        underline="hover"
+        color="inherit"
+        component={RouterLink}
+        to={to}
+      >
+        {value.charAt(0).toUpperCase() + value.slice(1)}
+      </Link>
+    );
+  });
+};
 
 const Layout = ({ onLogout }) => {
   const location = useLocation();
   const [anchorEl, setAnchorEl] = React.useState(null);
 
-  // Determine if the Navbar should be shown based on the current route
   const shouldShowNavbar = location.pathname !== "/";
 
   const handleMenuOpen = (event) => {
@@ -35,25 +55,23 @@ const Layout = ({ onLogout }) => {
 
   const handleResetPassword = () => {
     handleMenuClose();
-    // Implement reset password logic here
     console.log("Reset Password Clicked");
   };
+
+  const breadcrumbs = generateBreadcrumbs(location);
 
   return (
     <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <Sidebar />
-      <Box
-        component="main"
-        sx={{ flexGrow: 1, bgcolor: "background.default", p: 0.5 }} 
-      >
+      <Box component="main" sx={{ flexGrow: 1, bgcolor: "background.default" }}>
         {shouldShowNavbar && (
           <AppBar
             position="static"
             sx={{
-              bgcolor: "#f5f5f5", 
+              bgcolor: "#1d2127",
               boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-              mb: 2, 
+              mb: 2,
             }}
           >
             <Toolbar sx={{ justifyContent: "space-between", px: 2 }}>
@@ -61,23 +79,27 @@ const Layout = ({ onLogout }) => {
                 variant="h6"
                 component="div"
                 sx={{
-                  color: "#404040", // Darker text color for contrast
-                  fontWeight: "bold", // Bold text for emphasis
-                  letterSpacing: 1.2, // Slight letter spacing for readability
+                  color: "#ccc",
+                  fontWeight: "bold",
+                  letterSpacing: 1.2,
                 }}
               >
                 HawkEye
               </Typography>
-              <div>
+              <Box sx={{ display: "flex", alignItems: "center" }}>
+                <Breadcrumbs aria-label="breadcrumb" sx={{ color: "#ccc", mr: 2,fontSize:"13px" }}>
+                  <Link underline="hover" color="inherit" component={RouterLink} to="/">
+                    Home
+                  </Link>
+                  {breadcrumbs}
+                </Breadcrumbs>
                 <IconButton
                   edge="end"
                   aria-label="user options"
                   aria-controls="user-menu"
                   aria-haspopup="true"
                   onClick={handleMenuOpen}
-                  sx={{
-                    color: "#404040", 
-                  }}
+                  sx={{ color: "#ccc" }}
                 >
                   <AccountCircle />
                 </IconButton>
@@ -87,14 +109,16 @@ const Layout = ({ onLogout }) => {
                   open={Boolean(anchorEl)}
                   onClose={handleMenuClose}
                 >
-                  <MenuItem onClick={handleResetPassword}>Reset Password</MenuItem>
+                  <MenuItem onClick={handleResetPassword}>
+                    Reset Password
+                  </MenuItem>
                   <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </Menu>
-              </div>
+              </Box>
             </Toolbar>
           </AppBar>
         )}
-        <Outlet /> {/* Renders the matched child route component */}
+        <Outlet />
       </Box>
     </Box>
   );
