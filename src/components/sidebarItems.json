@@ -51,7 +51,7 @@
         },
         {
           "text": "Topic",
-          "link": "/ManageMasterData/Topic"
+          "link": "/ManageMasterData/MasterTopic"
         },
         {
           "text": "Evidence",
@@ -67,7 +67,7 @@
         },
         {
           "text": "Competency tag",
-          "link": "/ManageMasterData/Competencytag"
+          "link": "/ManageMasterData/Competency"
         }
       ]
     },
@@ -81,11 +81,11 @@
         },
         {
           "text": "Media Library",
-          "link": "/ManageLibrary/MediaLibrary"
+          "link": "/ManageLibrary/MediaLib"
         },
         {
           "text": "TextBook Library",
-          "link": "/ManageUser/TextBookLibrary"
+          "link": "/ManageUser/TextBookLib"
         }
       ]
     },

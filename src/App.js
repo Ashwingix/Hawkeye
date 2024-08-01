@@ -11,7 +11,7 @@ import Difficulty from './ManageMasterData/Difficulty';
 import Evidence from './ManageMasterData/Evidence';
 import Medium from './ManageMasterData/Medium';
 import MediaLib from './ManageLibrary/MediaLib';
-import QuestionLib from './ManageLibrary/QuestionLib';
+// import QuestionLib from './ManageLibrary/QuestionLib';
 import TextbookLib from './ManageLibrary/TextbookLib';
 import Chapter from './ManageMasterData/Chapter';
 import CreateList from './TaskManagement/CreateList';
@@ -25,6 +25,7 @@ import Grade from './ManageMasterData/Grade';
 import Competency from './ManageMasterData/Competency';
 import KnowledgeSubject from './KnowledgeGraph/Subject';
 import MasterSubject from './ManageMasterData/Subject';
+import MasterTopic from './ManageMasterData/MasterTopic';
 
 const App = () => {
   const [userLoggedIn, setUserLoggedIn] = useState(true);
@@ -59,12 +60,12 @@ const App = () => {
           <Route path="/ManageMasterData/Chapter" element={userLoggedIn ? <Chapter /> : <Navigate to="/" />} />
           <Route path="/ManageMasterData/Difficulty" element={userLoggedIn ? <Difficulty /> : <Navigate to="/" />} />
           <Route path="/ManageMasterData/Evidence" element={userLoggedIn ? <Evidence /> : <Navigate to="/" />} />
-          <Route path="/ManageMasterData/Topic" element={userLoggedIn ? <Topic /> : <Navigate to="/" />} />
+          <Route path="/ManageMasterData/MasterTopic" element={userLoggedIn ? <MasterTopic /> : <Navigate to="/" />} />
           <Route path="/ManageMasterData/Medium" element={userLoggedIn ? <Medium /> : <Navigate to="/" />} />
           <Route path="/ManageMasterData/Competency" element={userLoggedIn ? <Competency /> : <Navigate to="/" />} />
           
           <Route path="/ManageLibrary/MediaLib" element={userLoggedIn ? <MediaLib /> : <Navigate to="/" />} />
-          <Route path="/ManageLibrary/QuestionLib" element={userLoggedIn ? <QuestionLib /> : <Navigate to="/" />} />
+          {/* <Route path="/ManageLibrary/QuestionLib" element={userLoggedIn ? <QuestionLib /> : <Navigate to="/" />} /> */}
           <Route path="/ManageLibrary/TextbookLib" element={userLoggedIn ? <TextbookLib /> : <Navigate to="/" />} />
           
           <Route path="/TaskManagement/CreateList" element={userLoggedIn ? <CreateList /> : <Navigate to="/" />} />

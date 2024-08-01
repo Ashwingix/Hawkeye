@@ -4,18 +4,8 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
-import {
-  Modal,
-  Box,
-  Typography,
-  TextField,
-  Button,
-  Select,
-  MenuItem,
-  FormControl,
-  InputLabel,
-  Divider,
-} from "@mui/material";
+import { Box, Typography, Button, Divider } from "@mui/material";
+import AddModal from "../components/AddModel";
 
 const ActionsCellRenderer = (params) => {
   return (
@@ -43,12 +33,33 @@ const handleDelete = (rowData) => {
 };
 
 const Grade = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [modalConfig, setModalConfig] = useState({ title: "", fields: [] });
+
+  const openModal = (config) => {
+    setModalConfig(config);
+    setModalOpen(true);
+  };
+
+  const handleModalSubmit = (data) => {
+    console.log("Form Data:", data);
+    setModalOpen(false);
+  };
+
   const pagination = true;
-  const paginationPageSize = 10;
-  const paginationPageSizeSelector = [10,20, 30, 50];
+  const paginationPageSize = 500;
+  const paginationPageSizeSelector = [200, 500, 1000];
   const [rowData, setRowData] = useState([]);
   const [colDefs, setColDefs] = useState([
+    {
+      headerName: "Sno",
+      valueGetter: "node.rowIndex + 1",
+      resizable: true,
+      minWidth: 150,
+      filter: false,
+    },
     { field: "name", resizable: true, minWidth: 150 },
+   
     { field: "description", resizable: true, minWidth: 150 },
 
     {
@@ -59,57 +70,34 @@ const Grade = () => {
       minWidth: 150,
     },
   ]);
-  const [open, setOpen] = useState(false);
-  const [formValues, setFormValues] = useState({
-    name: "",
-    username: "",
-    email: "",
-    role: "",
-  });
 
-  const fetchData = async () => {
-    const apiUrl = "http://3.109.144.250/phase3/api/v1/grade/list";
-    const apiToken = sessionStorage.getItem("api_token");
-
-    try {
-      const response = await fetch(apiUrl, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${apiToken}`,
-        },
-      });
-
-      if (response.ok) {
-        const data = await response.json();
-        setRowData(data?.data);
-      } else {
-        console.error("Failed to fetch data");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
   useEffect(() => {
+    const fetchData = async () => {
+      const apiUrl = "http://3.109.144.250/phase3/api/v1/grade/list";
+      const apiToken = sessionStorage.getItem("api_token");
+
+      try {
+        const response = await fetch(apiUrl, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${apiToken}`,
+          },
+        });
+
+        if (response.ok) {
+          const data = await response.json();
+          setRowData(data?.data);
+        } else {
+          console.error("Failed to fetch data");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
     fetchData();
   }, []);
-
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormValues({
-      ...formValues,
-      [name]: value,
-    });
-  };
-
-  const handleSubmit = (e, onSubmit) => {
-    e.preventDefault();
-    onSubmit(formValues);
-    handleClose();
-  };
 
   return (
     <>
@@ -135,8 +123,28 @@ const Grade = () => {
           Grade
         </Typography>
 
-        <Button variant="contained" color="success" onClick={handleOpen}>
-          Add User
+        <Button
+          variant="contained"
+          color="success"
+          onClick={() =>
+            openModal({
+              title: "Add Grade",
+              fields: [
+                {
+                  name: "name",
+                  label: "Name",
+                },
+               
+                {
+                  name: "description",
+                  label: "description",
+                  
+                },
+              ],
+            })
+          }
+        >
+          Add Grade
         </Button>
       </Box>
       <Divider sx={{ marginBottom: "7px" }} />
@@ -213,7 +221,7 @@ const Grade = () => {
             </form>
           </Box>
         </Modal>
-        <Box className="ag-theme-quartz" sx={{ flexGrow: 1}}>
+        <Box className="ag-theme-quartz" sx={{ flexGrow: 1 }}>
           <AgGridReact
           
             rowData={rowData}

@@ -1,5 +1,6 @@
 import React from "react";
-import { Outlet, useLocation, Link as RouterLink } from "react-router-dom";
+// import { Outlet, useLocation, Link as RouterLink } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import {
   AppBar,
   Toolbar,
@@ -9,30 +10,30 @@ import {
   IconButton,
   Menu,
   MenuItem,
-  Breadcrumbs,
-  Link,
+ 
+  // Link,
 } from "@mui/material";
 import { AccountCircle } from "@mui/icons-material";
 import Sidebar from "./Sidebar";
 
 // Utility function to generate breadcrumb items
-const generateBreadcrumbs = (location) => {
-  const pathnames = location.pathname.split('/').filter((x) => x);
-  return pathnames.map((value, index) => {
-    const to = `/${pathnames.slice(0, index + 1).join('/')}`;
-    return (
-      <Link
-        key={to}
-        underline="hover"
-        color="inherit"
-        component={RouterLink}
-        to={to}
-      >
-        {value.charAt(0).toUpperCase() + value.slice(1)}
-      </Link>
-    );
-  });
-};
+// const generateBreadcrumbs = (location) => {
+//   const pathnames = location.pathname.split('/').filter((x) => x);
+//   return pathnames.map((value, index) => {
+//     const to = `/${pathnames.slice(0, index + 1).join('/')}`;
+//     return (
+//       <Link
+//         key={to}
+//         underline="hover"
+//         color="inherit"
+//         component={RouterLink}
+//         to={to}
+//       >
+//         {value.charAt(0).toUpperCase() + value.slice(1)}
+//       </Link>
+//     );
+//   });
+// };
 
 const Layout = ({ onLogout }) => {
   const location = useLocation();
@@ -58,7 +59,7 @@ const Layout = ({ onLogout }) => {
     console.log("Reset Password Clicked");
   };
 
-  const breadcrumbs = generateBreadcrumbs(location);
+  // const breadcrumbs = generateBreadcrumbs(location);
 
   return (
     <Box sx={{ display: "flex" }}>
