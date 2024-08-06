@@ -11,13 +11,9 @@ import Difficulty from './ManageMasterData/Difficulty';
 import Evidence from './ManageMasterData/Evidence';
 import Medium from './ManageMasterData/Medium';
 import MediaLib from './ManageLibrary/MediaLib';
-// import QuestionLib from './ManageLibrary/QuestionLib';
-import TextbookLib from './ManageLibrary/TextbookLib';
 import Chapter from './ManageMasterData/Chapter';
-import CreateList from './TaskManagement/CreateList';
 import TaskList from './TaskManagement/TaskList';
 import CreateArchives from './TaskManagement/CreateArchives';
-import CreateRequirement from './B2M/CreateRequirement';
 import RequirementArchives from './B2M/RequirementArchives';
 import ViewRequirement from './B2M/ViewRequirement';
 import { List } from '@mui/material';
@@ -26,6 +22,13 @@ import Competency from './ManageMasterData/Competency';
 import KnowledgeSubject from './KnowledgeGraph/Subject';
 import MasterSubject from './ManageMasterData/Subject';
 import MasterTopic from './ManageMasterData/MasterTopic';
+import QuestionLib from './ManageLibrary/QustionLib';
+import AddQuestions from './ManageLibrary/AddQustions';
+import AddMedia from './ManageLibrary/AddMedia';
+import TextbookLib from './ManageLibrary/TextbookLib';
+import AddTextbook from './ManageLibrary/AddTextbook';
+import AddTasks from './TaskManagement/AddTasks';
+import AddRequirement from './B2M/AddRequirement';
 
 const App = () => {
   const [userLoggedIn, setUserLoggedIn] = useState(true);
@@ -65,19 +68,24 @@ const App = () => {
           <Route path="/ManageMasterData/Competency" element={userLoggedIn ? <Competency /> : <Navigate to="/" />} />
           
           <Route path="/ManageLibrary/MediaLib" element={userLoggedIn ? <MediaLib /> : <Navigate to="/" />} />
-          {/* <Route path="/ManageLibrary/QuestionLib" element={userLoggedIn ? <QuestionLib /> : <Navigate to="/" />} /> */}
+          <Route path="/ManageLibrary/AddMedia" element={userLoggedIn ? <AddMedia /> : <Navigate to="/" />} />
+          <Route path="/ManageLibrary/QuestionLib" element={userLoggedIn ? <QuestionLib /> : <Navigate to="/" />} />
+          <Route path="/ManageLibrary/AddQuestions" element={userLoggedIn ? <AddQuestions /> : <Navigate to="/" />} />
           <Route path="/ManageLibrary/TextbookLib" element={userLoggedIn ? <TextbookLib /> : <Navigate to="/" />} />
+          <Route path="/ManageLibrary/AddTextbook" element={userLoggedIn ? <AddTextbook /> : <Navigate to="/" />} />
           
-          <Route path="/TaskManagement/CreateList" element={userLoggedIn ? <CreateList /> : <Navigate to="/" />} />
           <Route path="/TaskManagement/TaskList" element={userLoggedIn ? <TaskList /> : <Navigate to="/" />} />
+          <Route path="/TaskManagement/AddTasks" element={userLoggedIn ? <AddTasks /> : <Navigate to="/" />} />
           <Route path="/TaskManagement/CreateArchives" element={userLoggedIn ? <CreateArchives /> : <Navigate to="/" />} />
           
-          <Route path="/B2MManagement/CreateRequirement" element={userLoggedIn ? <CreateRequirement /> : <Navigate to="/" />} />
+          <Route path="/B2MManagement/AddRequirement" element={userLoggedIn ? <AddRequirement /> : <Navigate to="/" />} />
           <Route path="/B2MManagement/ViewRequirement" element={userLoggedIn ? <ViewRequirement /> : <Navigate to="/" />} />
           <Route path="/B2MManagement/RequirementArchives" element={userLoggedIn ? <RequirementArchives /> : <Navigate to="/" />} />
          
           <Route path="/KnowledgeGraph/KnowledgeSubject" element={userLoggedIn ? <KnowledgeSubject /> : <Navigate to="/" />} />
           <Route path="/TechAdmin/List" element={userLoggedIn ? <List /> : <Navigate to="/" />} /> 
+         
+         
           
         </Route>
       </Routes>

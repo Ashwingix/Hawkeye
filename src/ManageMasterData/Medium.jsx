@@ -8,6 +8,45 @@ import { Box, Typography, Button, Divider } from "@mui/material";
 import AddModal from "../components/AddModel";
 
 const ActionsCellRenderer = (params) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [modalConfig, setModalConfig] = useState({ title: "", fields: [] });
+
+  const openModal = (config) => {
+    setModalConfig(config);
+    setModalOpen(true);
+  };
+
+  const handleEdit = (rowData) => {
+    console.log("Edit action for: ", rowData);
+
+    openModal({
+      title: "Edit Medium",
+      fields: [
+        {
+          name: "name",
+          label: "Name",
+          value: rowData.name, // Pre-fill the form with existing data
+        },
+        {
+          name: "description",
+          label: "Description",
+          value: rowData.description, // Pre-fill the form with existing data
+        },
+      ],
+    });
+  };
+
+  const handleDelete = (rowData) => {
+    console.log("Delete action for: ", rowData);
+    // Add your delete logic here
+  };
+
+  const handleModalSubmit = (data) => {
+    console.log("Form Data:", data);
+    setModalOpen(false);
+    // Add your form submission logic here
+  };
+
   return (
     <div>
       <FaEdit
@@ -18,18 +57,15 @@ const ActionsCellRenderer = (params) => {
         style={{ cursor: "pointer" }}
         onClick={() => handleDelete(params.data)}
       />
+      <AddModal
+        isOpen={isModalOpen}
+        onClose={() => setModalOpen(false)}
+        title={modalConfig.title}
+        fields={modalConfig.fields}
+        onSubmit={handleModalSubmit}
+      />
     </div>
   );
-};
-
-const handleEdit = (rowData) => {
-  console.log("Edit action for: ", rowData);
-  // Add your edit logic here
-};
-
-const handleDelete = (rowData) => {
-  console.log("Delete action for: ", rowData);
-  // Add your delete logic here
 };
 
 const Medium = () => {

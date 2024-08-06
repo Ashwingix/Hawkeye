@@ -85,7 +85,7 @@
         },
         {
           "text": "TextBook Library",
-          "link": "/ManageUser/TextBookLib"
+          "link": "/ManageLibrary/TextbookLib"
         }
       ]
     },
@@ -97,13 +97,10 @@
           "text": "Task List",
           "link": "/TaskManagement/TaskList"
         },
-        {
-          "text": "Create List",
-          "link": "/TaskManagement/CreateList"
-        },
+        
         {
           "text": "Task Archives",
-          "link": "/TaskManagement/TaskArchives"
+          "link": "/TaskManagement/CreateArchives"
         }
       ]
     },
@@ -115,10 +112,7 @@
           "text": "View Requirement",
           "link": "/B2MManagement/ViewRequirement"
         },
-        {
-          "text": "Create Requirement",
-          "link": "/B2MManagement/CreateRequirement"
-        },
+       
         {
           "text": "Requirement Archives",
           "link": "/B2MManagement/RequirementArchives"

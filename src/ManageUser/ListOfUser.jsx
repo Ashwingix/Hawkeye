@@ -4,7 +4,7 @@ import "ag-grid-community/styles/ag-grid.css";
 import "ag-grid-community/styles/ag-theme-quartz.css";
 import { FaEdit, FaTrash } from "react-icons/fa";
 
-import { Box, Typography, Button, Divider } from "@mui/material";
+import { Box, Typography, Button, Divider} from "@mui/material";
 import AddModal from "../components/AddModel";
 
 const ActionsCellRenderer = (params) => {
@@ -101,7 +101,7 @@ const ListOfUser = () => {
 
     fetchData();
   }, []);
-
+ 
   return (
     <>
       <Box
@@ -113,7 +113,7 @@ const ListOfUser = () => {
           pr: 2,
         }}
       >
-        <Typography
+      <Typography
           variant="h6"
           component="div"
           sx={{

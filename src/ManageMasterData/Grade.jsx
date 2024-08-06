@@ -8,6 +8,45 @@ import { Box, Typography, Button, Divider } from "@mui/material";
 import AddModal from "../components/AddModel";
 
 const ActionsCellRenderer = (params) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+  const [modalConfig, setModalConfig] = useState({ title: "", fields: [] });
+
+  const openModal = (config) => {
+    setModalConfig(config);
+    setModalOpen(true);
+  };
+
+  const handleEdit = (rowData) => {
+    console.log("Edit action for: ", rowData);
+
+    openModal({
+      title: "Edit Grade",
+      fields: [
+        {
+          name: "name",
+          label: "Name",
+          value: rowData.name, // Pre-fill the form with existing data
+        },
+        {
+          name: "description",
+          label: "Description",
+          value: rowData.description, // Pre-fill the form with existing data
+        },
+      ],
+    });
+  };
+
+  const handleDelete = (rowData) => {
+    console.log("Delete action for: ", rowData);
+    // Add your delete logic here
+  };
+
+  const handleModalSubmit = (data) => {
+    console.log("Form Data:", data);
+    setModalOpen(false);
+    // Add your form submission logic here
+  };
+
   return (
     <div>
       <FaEdit
@@ -18,20 +57,16 @@ const ActionsCellRenderer = (params) => {
         style={{ cursor: "pointer" }}
         onClick={() => handleDelete(params.data)}
       />
+      <AddModal
+        isOpen={isModalOpen}
+        onClose={() => setModalOpen(false)}
+        title={modalConfig.title}
+        fields={modalConfig.fields}
+        onSubmit={handleModalSubmit}
+      />
     </div>
   );
 };
-
-const handleEdit = (rowData) => {
-  console.log("Edit action for: ", rowData);
-  // Add your edit logic here
-};
-
-const handleDelete = (rowData) => {
-  console.log("Delete action for: ", rowData);
-  // Add your delete logic here
-};
-
 const Grade = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [modalConfig, setModalConfig] = useState({ title: "", fields: [] });
@@ -47,8 +82,8 @@ const Grade = () => {
   };
 
   const pagination = true;
-  const paginationPageSize = 500;
-  const paginationPageSizeSelector = [200, 500, 1000];
+  const paginationPageSize = 10;
+  const paginationPageSizeSelector = [10, 20, 50, 100];
   const [rowData, setRowData] = useState([]);
   const [colDefs, setColDefs] = useState([
     {
@@ -59,8 +94,8 @@ const Grade = () => {
       filter: false,
     },
     { field: "name", resizable: true, minWidth: 150 },
-   
     { field: "description", resizable: true, minWidth: 150 },
+    
 
     {
       field: "Actions",
@@ -136,8 +171,8 @@ const Grade = () => {
                 },
                
                 {
-                  name: "description",
-                  label: "description",
+                  name: "Description",
+                  label:"Description",
                   
                 },
               ],
@@ -157,73 +192,15 @@ const Grade = () => {
           flexDirection: "column",
         }}
       >
-        <Modal open={open} onClose={handleClose}>
-          <Box
-            sx={{
-              position: "absolute",
-              top: "50%",
-              left: "50%",
-              transform: "translate(-50%, -50%)",
-              width: 400,
-              bgcolor: "background.paper",
-              p: 4,
-              borderRadius: 2,
-            }}
-          >
-            <Typography variant="h6" component="h2">
-              Add/Edit User
-            </Typography>
-            <form onSubmit={handleSubmit}>
-              <TextField
-                label="Name"
-                name="name"
-                value={formValues.name}
-                onChange={handleChange}
-                fullWidth
-                margin="normal"
-              />
-              <TextField
-                label="Username"
-                name="username"
-                value={formValues.username}
-                onChange={handleChange}
-                fullWidth
-                margin="normal"
-              />
-              <TextField
-                label="Email"
-                name="email"
-                value={formValues.email}
-                onChange={handleChange}
-                fullWidth
-                margin="normal"
-              />
-              <FormControl fullWidth margin="normal">
-                <InputLabel>Role</InputLabel>
-                <Select
-                  name="role"
-                  value={formValues.role}
-                  onChange={handleChange}
-                >
-                  <MenuItem value="Admin">Admin</MenuItem>
-                  <MenuItem value="User">User</MenuItem>
-                  <MenuItem value="Viewer">Viewer</MenuItem>
-                </Select>
-              </FormControl>
-              <Box sx={{ mt: 2, display: "flex", justifyContent: "flex-end" }}>
-                <Button onClick={handleClose} sx={{ mr: 2 }}>
-                  Cancel
-                </Button>
-                <Button type="submit" variant="contained" color="primary">
-                  Submit
-                </Button>
-              </Box>
-            </form>
-          </Box>
-        </Modal>
         <Box className="ag-theme-quartz" sx={{ flexGrow: 1 }}>
+          <AddModal
+            isOpen={isModalOpen}
+            onClose={() => setModalOpen(false)}
+            title={modalConfig.title}
+            fields={modalConfig.fields}
+            onSubmit={handleModalSubmit}
+          />
           <AgGridReact
-          
             rowData={rowData}
             columnDefs={colDefs}
             pagination={pagination}
@@ -237,5 +214,6 @@ const Grade = () => {
     </>
   );
 };
+
 
 export default Grade;
